@@ -1,0 +1,7 @@
+theme = "Monokai Pro Spectrum"
+mouse-scroll-multiplier = 1
+background-opacity = 0.8
+background-blur-radius = 40
+macos-titlebar-style = tabs
+macos-titlebar-proxy-icon = hidden
+macos-option-as-alt = true
