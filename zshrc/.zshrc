@@ -33,7 +33,6 @@ alias ......="cd ../../../../.."
 
 # K8S
 alias kube-prod="aws eks update-kubeconfig --region ca-central-1 --name TT-PROD-CLUSTER"
-alias kube-qa="aws eks update-kubeconfig --region ca-central-1 --name TT-QA-CLUSTER"
 alias kube-util="aws eks update-kubeconfig --region ca-central-1 --name TT-UTILITY-CLUSTER"
 
 chmod go-w '/opt/homebrew/share'
