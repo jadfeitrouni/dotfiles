@@ -28,6 +28,13 @@ return {
                     },
                 },
             },
+            eslint = {
+                settings = {
+                    experimental = {
+                        useFlatConfig = true,
+                    },
+                },
+            },
         },
     },
 }
