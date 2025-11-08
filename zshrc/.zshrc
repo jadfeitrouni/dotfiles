@@ -17,8 +17,18 @@ source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship config
+if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
+      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    zle -N zle-keymap-select "";
+fi
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# VI Mode
+bindkey '\e' vi-cmd-mode
 
 # Aliases
 alias ls='eza -la --icons $eza_params'
