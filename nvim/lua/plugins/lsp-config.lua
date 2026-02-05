@@ -10,7 +10,7 @@ return {
                             functionLikeReturnTypes = { enabled = false },
                             parameterNames = { enabled = false },
                             parameterTypes = { enabled = false },
-                            propertyDeclarationTypes = { enabled = true },
+                            propertyDeclarationTypes = { enabled = false },
                             variableTypes = { enabled = false },
                         },
                         tsserver = {
@@ -25,13 +25,6 @@ return {
                             enableServerSideFuzzyMatch = true,
                             entriesLimit = 50,
                         },
-                    },
-                },
-            },
-            eslint = {
-                settings = {
-                    experimental = {
-                        useFlatConfig = true,
                     },
                 },
             },
