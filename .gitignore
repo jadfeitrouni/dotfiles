@@ -16,3 +16,4 @@ better-auth
 gcloud
 op/
 posthog-cli/
+.wrangler/
