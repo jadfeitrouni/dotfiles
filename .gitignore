@@ -17,3 +17,4 @@ gcloud
 op/
 posthog-cli/
 .wrangler/
+gh/
