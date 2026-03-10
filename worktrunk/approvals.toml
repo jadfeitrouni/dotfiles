@@ -1,0 +1,9 @@
+[projects."github.com/metaboliq-ai/metaboliq"]
+approved-commands = [
+    '[ -n "$TMUX" ] && tmux rename-window {{branch | sanitize}}',
+    "pnpm install",
+    "wt step copy-ignored",
+    '[ -n "$TMUX"] && tmux rename-window {{branch | sanitize}}',
+    '[ -n "$TMUX"] && tmux rename-window {{ branch | sanitize }}',
+    '[ -n "$TMUX" ] && tmux rename-window {{ branch | sanitize }}',
+]
