@@ -41,26 +41,11 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-# K8S
-alias kube-prod="aws eks update-kubeconfig --region ca-central-1 --name TT-PROD-CLUSTER"
-alias kube-util="aws eks update-kubeconfig --region ca-central-1 --name TT-UTILITY-CLUSTER"
-
 chmod go-w '/opt/homebrew/share'
 chmod -R go-w '/opt/homebrew/share/zsh'
 
+export EDITOR=nvim
 
-# oh-my-zsh
-
-# export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="agnoster"
-# ZSH_CUSTOM=~/.config/omz
-# plugins=(
-#     git
-# )
-# source $ZSH/oh-my-zsh.sh
-
-# config
-# prompt_context(){}
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 
 export XDG_CONFIG_HOME="$HOME/.config"
