@@ -197,6 +197,10 @@ cmd-alt-ctrl-shift-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 cmd-alt-ctrl-shift-s = 'exec-and-forget open -a /Applications/Safari.app'
 cmd-alt-ctrl-shift-c = 'exec-and-forget open -a /Applications/Google Chrome.app'
 
+[[on-window-detected]]
+    if.app-id="com.mitchellh.ghostty"
+    run= ["layout tiling", "move-node-to-workspace 2"]
+
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
@@ -207,6 +211,7 @@ f = [
   'mode main',
 ] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
+
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
 #s = ['layout sticky tiling', 'mode main']
