@@ -2,6 +2,8 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
         servers = {
+            oxlint = {},
+            oxfmt = { enabled = false },
             vtsls = {
                 settings = {
                     typescript = {
