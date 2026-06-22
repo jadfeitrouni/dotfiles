@@ -4,6 +4,30 @@ return {
         servers = {
             oxlint = {},
             oxfmt = { enabled = false },
+            tsgo = {
+                filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "javascript.jsx",
+                    "typescript",
+                    "typescriptreact",
+                    "typescript.tsx",
+                },
+                settings = {
+                    typescript = {
+                        inlayHints = {
+                            enumMemberValues = { enabled = false },
+                            functionLikeReturnTypes = { enabled = false },
+                            parameterNames = { enabled = false },
+                            parameterTypes = { enabled = false },
+                            propertyDeclarationTypes = { enabled = false },
+                            variableTypes = { enabled = false },
+                        },
+
+                        workspaceSymbols = { scope = "currentProject" },
+                    },
+                },
+            },
             vtsls = {
                 settings = {
                     typescript = {
@@ -30,6 +54,18 @@ return {
                     },
                 },
             },
+        },
+        setup = {
+            vtsls = function()
+                -- Disable vtsls if tsgo is available in the project
+                local root = vim.fs.root(0, { "pnpm-lock.yaml", "package-lock.json", "yarn.lock", ".git" })
+                if root then
+                    local tsgo_bin = vim.fs.joinpath(root, "node_modules", ".bin", "tsgo")
+                    if vim.uv.fs_stat(tsgo_bin) then
+                        return true -- skip vtsls setup entirely
+                    end
+                end
+            end,
         },
     },
 }

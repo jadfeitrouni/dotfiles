@@ -3,3 +3,5 @@
 -- Add any additional options here
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+
+vim.g.lazyvim_ts_lsp = "tsgo"
