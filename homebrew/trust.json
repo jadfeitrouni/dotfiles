@@ -1,0 +1,12 @@
+{
+  "trustedformulae": [
+    "anomalyco/tap/opencode"
+  ],
+  "trustedtaps": [
+    "anomalyco/tap",
+    "felixkratz/formulae",
+    "hashicorp/tap",
+    "nikitabobko/tap",
+    "oven-sh/bun"
+  ]
+}
