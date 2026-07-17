@@ -1,7 +1,7 @@
 worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 
-[post-switch]
-tmux = '[ -n "$TMUX" ] && tmux rename-window "$(basename $(dirname "$PWD"))-{{ branch | sanitize }}"'
+# [post-switch]
+# tmux = '[ -n "$TMUX" ] && tmux rename-window "$(basename $(dirname "$PWD"))-{{ branch | sanitize }}"'
 
 [commit.generation]
 command = "opencode run -m google-vertex/gemini-3-flash-preview"
