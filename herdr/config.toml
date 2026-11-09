@@ -9,6 +9,11 @@ auto_switch = false
 [ui]
 agent_panel_sort = "spaces"
 
+[keys]
+# Cmd+1..9 (Ghostty passes these through, see ghostty/config);
+# prefix+shift+1..9 as a fallback for terminals that can't send Cmd
+switch_workspace = ["cmd+1..9", "prefix+shift+1..9"]
+
 # Ctrl+H/J/K/L: switch panes, but pass the key through to vim/nvim and fzf
 # (see navigate.sh; nvim's side lives in nvim/lua/config/keymaps.lua)
 [[keys.command]]
