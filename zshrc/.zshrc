@@ -33,7 +33,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Aliases
-alias ls='eza -la --icons $eza_params'
+alias ls='eza -la --icons=auto $eza_params'
 alias lt="eza --tree --level=2 --long --icons --git"
 
 # Dirs
