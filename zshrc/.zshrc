@@ -7,12 +7,16 @@ compinit
 source <(fzf --zsh)
 source <(kubectl completion zsh)
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^w' autosuggest-execute
-bindkey '^e' autosuggest-accept
-bindkey '^u' autosuggest-toggle
-bindkey '^L' vi-forward-word
+
+# Emacs keymap, set explicitly (otherwise zsh picks vi when $EDITOR contains "vi")
+bindkey -e
 bindkey '^k' up-line-or-search
 bindkey '^j' down-line-or-search
+
+# Ctrl+G: edit the current command line in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^g' edit-command-line
 
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -27,9 +31,6 @@ export STARSHIP_CONFIG=~/.config/starship/starship.toml
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# VI Mode
-bindkey '\e' vi-cmd-mode
 
 # Aliases
 alias ls='eza -la --icons $eza_params'
