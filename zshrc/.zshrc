@@ -10,8 +10,6 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Emacs keymap, set explicitly (otherwise zsh picks vi when $EDITOR contains "vi")
 bindkey -e
-bindkey '^k' up-line-or-search
-bindkey '^j' down-line-or-search
 
 # Ctrl+G: edit the current command line in $EDITOR
 autoload -Uz edit-command-line
@@ -19,6 +17,12 @@ zle -N edit-command-line
 bindkey '^g' edit-command-line
 
 source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# Up/Down: walk history; with text typed, only entries containing that text
+# (Ctrl+K/J are taken by herdr pane navigation)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[OA' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[OB' history-substring-search-down
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship config

@@ -1,5 +1,7 @@
 return {
     "christoomey/vim-tmux-navigator",
+    -- Inside herdr (and not tmux), lua/config/keymaps.lua handles Ctrl+H/J/K/L
+    cond = vim.env.TMUX ~= nil or vim.env.HERDR_PANE_ID == nil,
     cmd = {
         "TmuxNavigateLeft",
         "TmuxNavigateDown",

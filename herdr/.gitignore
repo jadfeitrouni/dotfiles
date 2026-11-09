@@ -1,0 +1,5 @@
+# Only track config and scripts; logs, sockets, session state stay local
+*
+!.gitignore
+!config.toml
+!navigate.sh
