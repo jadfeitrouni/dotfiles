@@ -1,13 +1,18 @@
 {
   "trustedformulae": [
     "anomalyco/tap/opencode",
+    "anomalyco/tap/opencode-v2",
     "hashicorp/tap/terraform"
   ],
   "trustedtaps": [
+    "abue-ammar/tinycast",
     "anomalyco/tap",
     "felixkratz/formulae",
     "hashicorp/tap",
     "nikitabobko/tap",
     "oven-sh/bun"
+  ],
+  "trustedcasks": [
+    "abue-ammar/tinycast/tinycast"
   ]
 }

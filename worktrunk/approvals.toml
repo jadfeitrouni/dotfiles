@@ -6,4 +6,5 @@ approved-commands = [
     '[ -n "$TMUX"] && tmux rename-window {{branch | sanitize}}',
     '[ -n "$TMUX"] && tmux rename-window {{ branch | sanitize }}',
     '[ -n "$TMUX" ] && tmux rename-window {{ branch | sanitize }}',
+    "pnpm install --frozen-lockfile",
 ]
