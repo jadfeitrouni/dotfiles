@@ -29,3 +29,11 @@ tmux/plugins/
 omz/plugins
 zed/conversations
 zed/prompts
+# Empty lock files tools create while writing (homebrew/trust.json.lock, ...)
+*.lock
+# opencode: server password, herdr-generated plugin, auto-installed plugin deps
+opencode/service.json
+opencode/plugins/herdr-agent-state.js
+opencode/node_modules/
+opencode/package.json
+opencode/package-lock.json
