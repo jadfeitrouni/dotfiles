@@ -1,20 +1,31 @@
+# ~/.config is shared with every app (many keep credentials here), so ignore
+# everything at the top level and only track what's listed below.
+# To track a new tool, add a `!/name/` line (git add -f won't cover new files).
+/*
+!/.gitignore
+!/Brewfile
+!/setup.sh
+!/aerospace/
+!/fish/
+!/fontforge/
+!/ghostty/
+!/herdr/
+!/homebrew/
+!/hunk/
+!/kanata/
+!/lazygit/
+!/nvim/
+!/omz/
+!/opencode/
+!/starship/
+!/tmux/
+!/worktrunk/
+!/zed/
+!/zshrc/
+
+# Noise inside tracked dirs
 .DS_Store
-Autodesk
-configstore
-containers
-github-copilot
-gtk-2.0
-karabiner
-raycast
-yarn
+tmux/plugins/
+omz/plugins
 zed/conversations
 zed/prompts
-omz/plugins
-tmux/plugins/
-nvm
-better-auth
-gcloud
-op/
-posthog-cli/
-.wrangler/
-gh/
