@@ -40,6 +40,16 @@ export LANG=en_US.UTF-8
 alias ls='eza -la --icons=auto $eza_params'
 alias lt="eza --tree --level=2 --long --icons --git"
 
+# hunk diff of everything not pushed yet: unpushed commits + uncommitted changes
+# (against the merge-base, so commits others pushed upstream don't show reversed)
+hdu() {
+  local base
+  base=$(git merge-base HEAD @{upstream} 2>/dev/null) ||
+    base=$(git merge-base HEAD origin/HEAD 2>/dev/null) ||
+    { echo "hdu: no upstream or origin/HEAD" >&2; return 1; }
+  hunk diff "$base" "$@"
+}
+
 # Dirs
 alias ..="cd .."
 alias ...="cd ../.."

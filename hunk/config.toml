@@ -1,0 +1,4 @@
+# Reload `hunk diff` as files change (vcs = hunk diff; not top level, where it
+# would also hit stdin-fed `hunk pager`/`hunk patch -`, which can't be watched)
+[vcs]
+watch = true

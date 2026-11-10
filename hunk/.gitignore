@@ -1,0 +1,4 @@
+# Only track config; state.json stays local
+*
+!.gitignore
+!config.toml
