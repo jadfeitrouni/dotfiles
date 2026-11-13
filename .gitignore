@@ -19,14 +19,12 @@
 !/opencode/
 !/rex/
 !/starship/
-!/tmux/
 !/worktrunk/
 !/zed/
 !/zshrc/
 
 # Noise inside tracked dirs
 .DS_Store
-tmux/plugins/
 omz/plugins
 zed/conversations
 zed/prompts

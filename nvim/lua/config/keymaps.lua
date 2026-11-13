@@ -5,11 +5,9 @@
 -- Ctrl+H/J/K/L inside herdr or Rex: move between nvim splits, and at nvim's
 -- edge move to the neighbouring multiplexer pane (vim-tmux-navigator
 -- equivalent; the other side is ~/.config/herdr/navigate.sh or
--- ~/.config/rex/init.lua). Inside tmux, vim-tmux-navigator handles these.
+-- ~/.config/rex/init.lua). Elsewhere LazyVim's default split navigation applies.
 local focus_outer
-if vim.env.TMUX then
-  focus_outer = nil
-elseif vim.env.HERDR_PANE_ID then
+if vim.env.HERDR_PANE_ID then
   local herdr = vim.env.HERDR_BIN_PATH or "herdr"
   focus_outer = function(dir)
     vim.system({ herdr, "pane", "focus", "--pane", vim.env.HERDR_PANE_ID, "--direction", dir })
