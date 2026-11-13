@@ -1,7 +1,16 @@
+# Shared zsh config for macOS and Linux; ~/.zshrc symlinks here (see ../setup.sh).
+# OS differences live in darwin.zsh / linux.zsh, per-machine bits in ~/.zshrc.local.
+ZSHRC_DIR=${${(%):-%x}:A:h}  # this file's real directory, through the symlink
+
+# Sets HOMEBREW_PREFIX (hardcoded: `brew --prefix` costs ~15ms a call) and fpath,
+# so it must run before compinit
+case $OSTYPE in
+  darwin*) source $ZSHRC_DIR/darwin.zsh ;;
+  linux*) source $ZSHRC_DIR/linux.zsh ;;
+esac
+
 setopt prompt_subst
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/opt/homebrew}  # `brew --prefix` costs ~15ms a call
 
 # Rebuild the completion cache at most once a day; otherwise trust it (-C skips
 # the ~30ms rescan). New completions show up after a day or `rm ~/.zcompdump`.
@@ -25,7 +34,6 @@ _cached_source() {
 }
 
 source <(fzf --zsh)
-(( $+commands[kubectl] )) && _cached_source kubectl $commands[kubectl] kubectl completion zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Emacs keymap, set explicitly (otherwise zsh picks vi when $EDITOR contains "vi")
@@ -77,11 +85,11 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-chmod go-w '/opt/homebrew/share'
-chmod -R go-w '/opt/homebrew/share/zsh'
-
 export EDITOR=nvim
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow'
 
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Per-machine additions, not synced (toolchains, PATH tweaks, ...)
+[[ -r ~/.zshrc.local ]] && source ~/.zshrc.local
