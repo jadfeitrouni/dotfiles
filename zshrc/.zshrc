@@ -1,12 +1,32 @@
 setopt prompt_subst
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
+HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/opt/homebrew}  # `brew --prefix` costs ~15ms a call
+
+# Rebuild the completion cache at most once a day; otherwise trust it (-C skips
+# the ~30ms rescan). New completions show up after a day or `rm ~/.zcompdump`.
 autoload -Uz compinit
-compinit
+_zcompdump=(${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24))
+if (( $#_zcompdump )); then compinit; else compinit -C; fi
+unset _zcompdump
+
+# Source a tool's generated shell code from ~/.cache/zsh instead of running the
+# generator in every new shell. Regenerates when the binary is upgraded.
+# Usage: _cached_source NAME BINARY COMMAND...
+_cached_source() {
+  local name=$1 bin=${2:A}; shift 2
+  local cache=${XDG_CACHE_HOME:-$HOME/.cache}/zsh/$name.zsh stamp
+  [[ -s $cache ]] && read -r stamp < $cache
+  if [[ $stamp != "# $bin" || $bin -nt $cache ]]; then
+    mkdir -p ${cache:h}
+    { print -r -- "# $bin"; "$@" } >| $cache || { rm -f $cache; return 1 }
+  fi
+  source $cache
+}
 
 source <(fzf --zsh)
-source <(kubectl completion zsh)
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+(( $+commands[kubectl] )) && _cached_source kubectl $commands[kubectl] kubectl completion zsh
+source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Emacs keymap, set explicitly (otherwise zsh picks vi when $EDITOR contains "vi")
 bindkey -e
@@ -16,14 +36,14 @@ autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^g' edit-command-line
 
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 # Up/Down: walk history; with text typed, only entries containing that text
 # (Ctrl+K/J are taken by herdr pane navigation)
 bindkey '^[[A' history-substring-search-up
 bindkey '^[OA' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey '^[OB' history-substring-search-down
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Starship config
 if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
